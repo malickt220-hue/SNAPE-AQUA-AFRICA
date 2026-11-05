@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#087E78">
+
+<title>Administration | SNAPE AQUA AFRICA</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f7f8;
+    color: #183b3b;
+}
+
+header {
+    background: #075e5b;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h2 {
+    font-size: 17px;
+}
+
+header p {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #d4eeee;
+}
+
+.logout {
+    background: #ffffff;
+    color: #075e5b;
+    border: none;
+    padding: 10px 13px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.container {
+    padding: 22px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.welcome {
+    margin-bottom: 25px;
+}
+
+.welcome h1 {
+    font-size: 23px;
+    margin-bottom: 8px;
+}
+
+.welcome p {
+    color: #748787;
+    font-size: 14px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+}
+
+.card .icon {
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    font-size: 14px;
+    color: #758787;
+    margin-bottom: 10px;
+}
+
+.card strong {
+    font-size: 25px;
+    color: #087e78;
+}
+
+.section {
+    margin-top: 30px;
+    background: white;
+    padding: 22px;
+    border-radius: 15px;
+}
+
+.section h2 {
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.menu button {
+    padding: 17px 10px;
+    border: 1px solid #e2eeee;
+    background: #f8fbfb;
+    border-radius: 12px;
+    color: #075e5b;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.menu button span {
+    display: block;
+    font-size: 25px;
+    margin-bottom: 9px;
+}
+
+#message {
+    text-align: center;
+    padding: 30px;
+    color: #087e78;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h2>💧 SNAPE AQUA AFRICA</h2>
+        <p>Espace administrateur</p>
+    </div>
+
+    <button class="logout" onclick="deconnexion()">
+        Déconnexion
+    </button>
+</header>
+
+<main class="container" id="dashboard" style="display:none">
+
+    <div class="welcome">
+        <h1>Tableau de bord</h1>
+        <p>Bienvenue, <strong id="adminName">Administrateur</strong>.</p>
+        <p>Gérez votre plateforme de recensement des forages.</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">💧</div>
+            <h3>Forages recensés</h3>
+            <strong>—</strong>
+        </div>
+
+        <div class="card">
+            <div class="icon">👥</div>
+            <h3>Enquêteurs</h3>
+            <strong>—</strong>
+        </div>
+
+        <div class="card">
+            <div class="icon">📍</div>
+            <h3>Localités couvertes</h3>
+            <strong>—</strong>
+        </div>
+
+        <div class="card">
+            <div class="icon">⏳</div>
+            <h3>En attente de validation</h3>
+            <strong>—</strong>
+        </div>
+
+    </div>
+
+    <div class="section">
+        <h2>Gestion de la plateforme</h2>
+
+        <div class="menu">
+
+            <button onclick="alert('Module Forages à construire')">
+                <span>💧</span>
+                Forages
+            </button>
+
+            <button onclick="alert('Module Enquêteurs à construire')">
+                <span>👥</span>
+                Enquêteurs
+            </button>
+
+            <button onclick="alert('Module Recensements à construire')">
+                <span>📋</span>
+                Recensements
+            </button>
+
+            <button onclick="alert('Module Cartographie à construire')">
+                <span>🗺️</span>
+                Cartographie
+            </button>
+
+            <button onclick="alert('Module Rapports à construire')">
+                <span>📊</span>
+                Rapports
+            </button>
+
+            <button onclick="alert('Module Paramètres à construire')">
+                <span>⚙️</span>
+                Paramètres
+            </button>
+
+        </div>
+    </div>
+
+</main>
+
+<div id="message">Vérification de votre session...</div>
+
+<script>
+
+// CONFIGURATION SUPABASE
+
+const SUPABASE_URL = "https://lycbttbbopwpcgvafmtl.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_OglrSM9YDLLd4FE6RpNVXA_38kPjLFT";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+// VERIFICATION DE L'ADMINISTRATEUR
+
+async function verifierAdministrateur() {
+
+    const message = document.getElementById("message");
+
+    try {
+
+        const { data: sessionData, error: sessionError } =
+            await supabaseClient.auth.getSession();
+
+        if (sessionError) throw sessionError;
+
+        const user = sessionData.session?.user;
+
+        if (!user) {
+            window.location.replace("connexion.html");
+            return;
+        }
+
+        const { data: profile, error } = await supabaseClient
+            .from("profiles")
+            .select("nom_complet, role, statut")
+            .eq("id", user.id)
+            .single();
+
+        if (error) throw error;
+
+        if (profile.role !== "administrateur" ||
+            profile.statut !== "actif") {
+
+            await supabaseClient.auth.signOut();
+            window.location.replace("connexion.html");
+            return;
+        }
+
+        document.getElementById("adminName").textContent =
+            profile.nom_complet || "Administrateur";
+
+        document.getElementById("dashboard").style.display = "block";
+        message.style.display = "none";
+
+    } catch (error) {
+
+        message.textContent = "Erreur : " + error.message;
+
+    }
+
+}
+
+// DECONNEXION
+
+async function deconnexion() {
+
+    await supabaseClient.auth.signOut();
+
+    window.location.replace("connexion.html");
+
+}
+
+verifierAdministrateur();
+
+</script>
+
+</body>
+</html>
