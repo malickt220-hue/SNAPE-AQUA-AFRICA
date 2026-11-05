@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#087E78">
+
+<title>Connexion | SNAPE AQUA AFRICA</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #063f45, #087e78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    padding: 35px 25px;
+    border-radius: 22px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo-icon {
+    width: 65px;
+    height: 65px;
+    margin: auto;
+    background: #e4f5f2;
+    color: #087e78;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+h1 {
+    color: #123b3d;
+    font-size: 23px;
+    margin-top: 15px;
+}
+
+.subtitle {
+    color: #778787;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+label {
+    display: block;
+    color: #344b4b;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 18px 0 8px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #dce5e5;
+    border-radius: 11px;
+    outline: none;
+    font-size: 15px;
+}
+
+input:focus {
+    border-color: #087e78;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 25px;
+    background: #087e78;
+    color: white;
+    border: none;
+    border-radius: 11px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.6;
+}
+
+#message {
+    margin-top: 18px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.footer {
+    text-align: center;
+    color: #8b9999;
+    font-size: 11px;
+    margin-top: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        <div class="logo-icon">💧</div>
+        <h1>SNAPE AQUA AFRICA</h1>
+        <p class="subtitle">Plateforme de recensement des forages</p>
+    </div>
+
+    <form id="loginForm">
+
+        <label>Adresse e-mail</label>
+        <input
+            type="email"
+            id="email"
+            placeholder="Votre adresse e-mail"
+            required
+        >
+
+        <label>Mot de passe</label>
+        <input
+            type="password"
+            id="password"
+            placeholder="Votre mot de passe"
+            required
+        >
+
+        <button type="submit" id="loginButton">
+            Se connecter
+        </button>
+
+        <p id="message"></p>
+        
+        <p style="text-align:center; margin-top:20px; font-size:14px; color:#778787;">
+    Vous n'avez pas encore de compte ?
+    <a href="inscription.html"
+       style="color:#087e78; font-weight:bold; text-decoration:none;">
+       Créer un compte
+    </a>
+</p>
+
+    </form>
+
+    <div class="footer">
+        SNAPE AQUA AFRICA © 2026
+    </div>
+
+</div>
+
+<script>
+
+// CONFIGURATION SUPABASE
+
+const SUPABASE_URL = "https://lycbttbbopwpcgvafmtl.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_OglrSM9YDLLd4FE6RpNVXA_38kPjLFT";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+// CONNEXION
+
+document.getElementById("loginForm").addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    const button = document.getElementById("loginButton");
+    const message = document.getElementById("message");
+
+    button.disabled = true;
+    button.textContent = "Connexion en cours...";
+    message.textContent = "";
+
+    try {
+
+        // 1. Authentification
+
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        if (error) throw error;
+
+        const user = data.user;
+
+        // 2. Récupération du profil
+
+        const { data: profile, error: profileError } = await supabaseClient
+            .from("profiles")
+            .select("nom_complet, role, statut")
+            .eq("id", user.id)
+            .single();
+
+        if (profileError) {
+            throw new Error("Erreur de récupération du profil : " + profileError.message);
+        }
+
+        // 3. Vérification du statut
+
+        if (profile.statut !== "actif") {
+            throw new Error("Votre compte n'est pas encore activé.");
+        }
+
+        // 4. Redirection selon le rôle
+
+        if (profile.role === "administrateur") {
+
+            message.style.color = "green";
+            message.textContent = "Connexion réussie. Bienvenue !";
+
+            window.location.href = "admin.html";
+
+        } else if (profile.role === "enqueteur") {
+
+            window.location.href = "enqueteur.html";
+
+        } else {
+
+            throw new Error("Rôle utilisateur non reconnu.");
+
+        }
+
+    } catch (error) {
+
+        message.style.color = "red";
+        message.textContent = error.message;
+
+        await supabaseClient.auth.signOut();
+
+    }
+
+    button.disabled = false;
+    button.textContent = "Se connecter";
+
+});
+
+</script>
+
+</body>
+</html>
