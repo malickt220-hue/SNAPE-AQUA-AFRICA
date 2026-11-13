@@ -1,0 +1,381 @@
+:root {
+    --primary: #087E78;
+    --primary-dark: #06645F;
+    --background: #F3F7F7;
+    --white: #FFFFFF;
+    --text: #263746;
+    --muted: #718096;
+    --border: #E2E8F0;
+    --danger: #DC3545;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.header {
+    background: var(--primary);
+    color: white;
+    padding: 18px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.header-title {
+    font-size: 14px;
+}
+
+.container {
+    max-width: 850px;
+    margin: 35px auto;
+    padding: 0 18px;
+}
+
+.form-heading {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.form-heading h1 {
+    font-size: 25px;
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+}
+
+.form-heading p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.progress-container {
+    height: 9px;
+    background: #DCE8E7;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+#progression {
+    height: 100%;
+    width: 12.5%;
+    background: var(--primary);
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+.step-info {
+    text-align: right;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+#formulaireForage {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+    animation: apparition 0.3s ease;
+}
+
+@keyframes apparition {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-step h2 {
+    font-size: 20px;
+    color: var(--primary);
+    padding-bottom: 17px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+}
+
+.form-step label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+}
+
+.form-step input,
+.form-step select,
+.form-step textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+    background: #fff;
+    color: var(--text);
+    outline: none;
+    font-family: inherit;
+}
+
+.form-step input:focus,
+.form-step select:focus,
+.form-step textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(8,126,120,0.1);
+}
+
+.form-step input[readonly] {
+    background: #F0F5F5;
+    color: #52616B;
+}
+
+.form-step textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+#btnGPS {
+    width: 100%;
+    padding: 14px;
+    margin-top: 18px;
+    background: #E6F5F3;
+    color: var(--primary-dark);
+    border: 1px solid #B9DFDB;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.navigation button {
+    padding: 14px 22px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#precedent {
+    background: #E9EEEE;
+    color: var(--text);
+}
+
+#suivant,
+#soumettre {
+    background: var(--primary);
+    color: white;
+    margin-left: auto;
+}
+
+.navigation button:hover,
+#btnGPS:hover {
+    opacity: 0.9;
+}
+
+#message {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 16px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .header-title {
+        font-size: 12px;
+    }
+
+    .container {
+        margin: 22px auto;
+        padding: 0 12px;
+    }
+
+    .form-heading h1 {
+        font-size: 21px;
+    }
+
+    #formulaireForage {
+        padding: 20px 16px;
+    }
+
+    .form-step h2 {
+        font-size: 18px;
+    }
+
+    .navigation button {
+        padding: 13px 16px;
+        font-size: 13px;
+    }
+}
+.retour-dashboard {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 15px 0;
+    padding: 12px 18px;
+    background: #ffffff;
+    color: #087E78;
+    border: 2px solid #087E78;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.retour-dashboard:hover {
+    background: #087E78;
+    color: #ffffff;
+}
+
+.retour-dashboard:active {
+    transform: scale(0.97);
+}
+
+/* FENETRE DE CONSULTATION */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    z-index: 1000;
+}
+
+.modal[hidden] {
+    display: none !important;
+}
+
+.modal-contenu {
+    background: white;
+    width: 100%;
+    max-width: 950px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 14px;
+    padding: 25px;
+}
+
+.modal-entete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.modal-entete h2 {
+    color: #087E78;
+}
+
+#fermerConsultation {
+    border: none;
+    background: #f1f5f9;
+    font-size: 28px;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.detail-section {
+    margin-bottom: 25px;
+}
+
+.detail-section h3 {
+    color: #087E78;
+    font-size: 17px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e6f1ef;
+}
+
+.detail-grille {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.detail-item {
+    background: #f7f9fa;
+    padding: 12px;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+
+.detail-item strong {
+    display: block;
+    color: #64748b;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.detail-item span {
+    font-size: 14px;
+    color: #263238;
+}
+
+.btn-consulter {
+    background: #087E78;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .modal-contenu {
+        padding: 17px;
+    }
+
+    .detail-grille {
+        grid-template-columns: 1fr;
+    }
+}

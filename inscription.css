@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f7f6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 15px;
+}
+.container {
+    width: 100%;
+    max-width: 460px;
+}
+.logo {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: #087E78;
+    margin-bottom: 25px;
+}
+.logo span {
+    color: #263b3a;
+}
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+}
+h1 {
+    text-align: center;
+    color: #263b3a;
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+.subtitle {
+    text-align: center;
+    color: #71817f;
+    margin-bottom: 28px;
+    font-size: 14px;
+}
+.form-group {
+    margin-bottom: 18px;
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #354745;
+}
+input {
+    width: 100%;
+    height: 48px;
+    padding: 0 13px;
+    border: 1px solid #d8e2e0;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+}
+input:focus {
+    border-color: #087E78;
+    box-shadow: 0 0 0 3px rgba(8, 126, 120, 0.1);
+}
+button {
+    width: 100%;
+    height: 49px;
+    border: none;
+    border-radius: 8px;
+    background: #087E78;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+}
+button:hover {
+    background: #066761;
+}
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+#message {
+    font-size: 14px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+.success {
+    color: #16803c;
+}
+.error {
+    color: #d62828;
+}
+.login-link {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 14px;
+    color: #71817f;
+}
+.login-link a {
+    color: #087E78;
+    font-weight: bold;
+    text-decoration: none;
+}
+footer {
+    text-align: center;
+    margin-top: 22px;
+    color: #899794;
+    font-size: 12px;
+}
+@media (max-width: 400px) {
+    .card {
+        padding: 22px 18px;
+    }
+}

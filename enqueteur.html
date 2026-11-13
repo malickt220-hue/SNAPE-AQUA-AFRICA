@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#075B56">
+
+    <title>Espace Enquêteur | SNAPE AQUA AFRICA</title>
+
+    <link rel="stylesheet" href="enqueteur.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar" id="sidebar">
+
+        <!-- IDENTITE DE L'ENTREPRISE -->
+        <div class="sidebar-brand">
+            <div class="brand-icon">💧</div>
+
+            <div>
+                <h2>SNAPE AQUA</h2>
+                <span>AFRICA</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">
+            MENU PRINCIPAL
+        </div>
+
+        <!-- NAVIGATION -->
+        <nav class="sidebar-nav">
+
+            <a href="enqueteur.html" class="nav-link active">
+                <span>▦</span>
+                Tableau de bord
+            </a>
+
+            <a href="forage.html" class="nav-link">
+                <span>💧</span>
+                Enregistrer un forage
+            </a>
+
+            <a href="fiches.html" class="nav-link">
+                <span>📋</span>
+                Mes fiches
+            </a>
+
+            <a href="mon-profil.html" class="nav-link">
+                <span>👤</span>
+                Mon profil
+            </a>
+
+        </nav>
+
+        <!-- PROFIL EN BAS DU MENU -->
+        <div class="sidebar-footer">
+
+            <div class="profile-card">
+
+                <div class="profile-avatar" id="profilAvatar">
+                    E
+                </div>
+
+                <div class="profile-info">
+                    <strong id="nomEnqueteur">
+                        Chargement...
+                    </strong>
+
+                    <span>Enquêteur</span>
+                </div>
+
+            </div>
+
+            <button
+                id="btnDeconnexion"
+                class="btn-deconnexion"
+                type="button">
+
+                <span>↪</span>
+                Déconnexion
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- VOILE MOBILE -->
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay">
+    </div>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="main-content">
+
+        <!-- BARRE SUPERIEURE -->
+        <header class="topbar">
+
+            <button
+                id="btnMenu"
+                class="btn-menu"
+                aria-label="Ouvrir le menu"
+                aria-controls="sidebar"
+                aria-expanded="false"
+                type="button">
+
+                ☰
+
+            </button>
+
+            <div class="topbar-title">
+
+                <span class="page-indicator">
+                    ESPACE ENQUÊTEUR
+                </span>
+
+                <h1>Tableau de bord</h1>
+
+            </div>
+
+        </header>
+
+        <!-- ACCUEIL -->
+        <section class="welcome-section">
+
+            <div class="welcome-content">
+
+                <span class="welcome-label">
+                    SNAPE AQUA AFRICA
+                </span>
+
+                <h2>
+                    Bienvenue dans votre espace 👋
+                </h2>
+
+                <p>
+                    Retrouvez ici une vue générale de vos activités
+                    de recensement des forages.
+                </p>
+
+            </div>
+
+            <div class="welcome-icon">
+                💧
+            </div>
+
+        </section>
+
+        <!-- STATISTIQUES -->
+        <section class="section-dashboard">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Vue d'ensemble</h2>
+
+                    <p>
+                        Situation de vos recensements
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="stats-grid">
+
+                <!-- TOTAL -->
+                <article class="stat-card">
+
+                    <div class="stat-icon icon-blue">
+                        💧
+                    </div>
+
+                    <div class="stat-details">
+                        <span>Mes forages</span>
+                        <strong id="totalForages">0</strong>
+                    </div>
+
+                </article>
+
+                <!-- EN ATTENTE -->
+                <article class="stat-card">
+
+                    <div class="stat-icon icon-orange">
+                        📋
+                    </div>
+
+                    <div class="stat-details">
+                        <span>En attente</span>
+                        <strong id="foragesAttente">0</strong>
+                    </div>
+
+                </article>
+
+                <!-- VALIDES -->
+                <article class="stat-card">
+
+                    <div class="stat-icon icon-green">
+                        ✓
+                    </div>
+
+                    <div class="stat-details">
+                        <span>Fiches validées</span>
+                        <strong id="foragesValides">0</strong>
+                    </div>
+
+                </article>
+
+                <!-- REJETES -->
+                <article class="stat-card">
+
+                    <div class="stat-icon icon-red">
+                        ✕
+                    </div>
+
+                    <div class="stat-details">
+                        <span>Fiches rejetées</span>
+                        <strong id="foragesRejetes">0</strong>
+                    </div>
+
+                </article>
+
+            </div>
+
+            <p id="message" role="status" aria-live="polite"></p>
+
+        </section>
+
+        <!-- PIED DE PAGE -->
+        <footer class="footer">
+            © 2026 SNAPE AQUA AFRICA — Tous droits réservés.
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script type="module" src="enqueteur.js"></script>
+
+</body>
+</html>

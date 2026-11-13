@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#075B56">
+
+    <title>Gestion des enquêteurs | SNAPE AQUA AFRICA</title>
+
+    <link rel="stylesheet" href="gestion-enqueteurs.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">💧</div>
+
+            <div>
+                <h2>SNAPE AQUA</h2>
+                <span>AFRICA</span>
+            </div>
+
+        </div>
+
+        <div class="sidebar-label">MENU PRINCIPAL</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="admin.html" class="nav-link">
+                <span>▦</span>
+                Tableau de bord
+            </a>
+
+            <a href="gestion-forages.html" class="nav-link">
+                <span>💧</span>
+                Gestion des forages
+            </a>
+
+            <a href="gestion-enqueteurs.html" class="nav-link active">
+                <span>👥</span>
+                Gestion des enquêteurs
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>📊</span>
+                Rapports et statistiques
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>⚙</span>
+                Paramètres
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <div class="profile-card">
+
+                <div class="profile-avatar" id="profilAvatar">A</div>
+
+                <div class="profile-info">
+                    <strong id="profilNom">Chargement...</strong>
+                    <span>Administrateur</span>
+                </div>
+
+            </div>
+
+            <button id="btnDeconnexion" class="btn-deconnexion" type="button">
+                <span>↪</span>
+                Déconnexion
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- VOILE MOBILE -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="main-content">
+
+        <!-- BARRE SUPERIEURE -->
+        <header class="topbar">
+
+            <button
+                id="btnMenu"
+                class="btn-menu"
+                type="button"
+                aria-label="Ouvrir le menu"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <div class="topbar-title">
+                <span class="page-indicator">ADMINISTRATION</span>
+                <h1>Gestion des enquêteurs</h1>
+            </div>
+
+        </header>
+
+        <div class="conteneur">
+
+            <!-- PRESENTATION -->
+            <section class="titre-section">
+
+                <h2>Gestion des enquêteurs</h2>
+
+                <p>
+                    Consultez et gérez les comptes des enquêteurs.
+                </p>
+
+            </section>
+
+            <!-- STATISTIQUES -->
+            <section class="statistiques">
+
+                <article class="carte-stat">
+                    <span>Total enquêteurs</span>
+                    <strong id="totalEnqueteurs">0</strong>
+                </article>
+
+                <article class="carte-stat attente">
+                    <span>En attente</span>
+                    <strong id="totalAttente">0</strong>
+                </article>
+
+                <article class="carte-stat actifs">
+                    <span>Comptes actifs</span>
+                    <strong id="totalActifs">0</strong>
+                </article>
+
+            </section>
+
+            <!-- LISTE DES ENQUETEURS -->
+            <section class="section-liste">
+
+                <div class="barre-outils">
+
+                    <div>
+                        <h3>Liste des enquêteurs</h3>
+                        <p>Gestion des accès et des autorisations.</p>
+                    </div>
+
+                    <input
+                        type="search"
+                        id="rechercheEnqueteur"
+                        placeholder="Rechercher un enquêteur...">
+
+                </div>
+
+                <div id="message" class="message"></div>
+
+                <div class="table-responsive">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Nom complet</th>
+                                <th>Téléphone</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="listeEnqueteurs">
+
+                            <tr>
+                                <td colspan="4">
+                                    Chargement des enquêteurs...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <footer class="footer">
+            © 2026 SNAPE AQUA AFRICA — Tous droits réservés.
+        </footer>
+
+    </main>
+
+</div>
+
+<script type="module" src="gestion-enqueteurs.js"></script>
+
+</body>
+</html>

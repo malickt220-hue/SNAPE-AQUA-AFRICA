@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#075B56">
+<title>Tableau de bord | SNAPE AQUA AFRICA</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div class="dashboard">
+<!-- MENU LATERAL -->
+<aside class="sidebar" id="sidebar">
+    <!-- IDENTITE DE L'ENTREPRISE -->
+    <div class="sidebar-brand">
+        <div class="brand-icon">💧</div>
+        <div>
+            <h2>SNAPE AQUA</h2>
+            <span>AFRICA</span>
+        </div>
+    </div>
+    <div class="sidebar-label">MENU PRINCIPAL</div>
+    <nav class="sidebar-nav">
+        <a href="admin.html" class="nav-link active">
+            <span>▦</span>
+            Tableau de bord
+        </a>
+        <a href="gestion-forages.html" class="nav-link">
+            <span>💧</span>
+            Gestion des forages
+        </a>
+        <a href="gestion-enqueteurs.html" class="nav-link">
+            <span>👥</span>
+            Gestion des enquêteurs
+        </a>
+        <a href="#" class="nav-link">
+            <span>📊</span>
+            Rapports et statistiques
+        </a>
+        <a href="#" class="nav-link">
+            <span>⚙</span>
+            Paramètres
+        </a>
+    </nav>
+    <!-- PROFIL ADMINISTRATEUR EN BAS -->
+    <div class="sidebar-footer">
+        <div class="profile-card">
+            <div class="profile-avatar" id="profilAvatar">
+                A
+            </div>
+            <div class="profile-info">
+                <strong id="profilNom">Chargement...</strong>
+                <span>Administrateur</span>
+            </div>
+        </div>
+        <button
+            id="btnDeconnexion"
+            class="btn-deconnexion"
+            type="button">
+            <span>↪</span>
+            Déconnexion
+        </button>
+    </div>
+</aside>
+<!-- VOILE MOBILE -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<!-- CONTENU PRINCIPAL -->
+<main class="main-content">
+    <!-- EN-TETE -->
+    <header class="topbar">
+        <button
+            id="btnMenu"
+            class="btn-menu"
+            aria-label="Ouvrir le menu"
+            aria-expanded="false"
+            type="button">
+            ☰
+        </button>
+        <div class="topbar-title">
+            <span class="page-indicator">ADMINISTRATION</span>
+            <h1>Tableau de bord</h1>
+        </div>
+    </header>
+    <!-- BIENVENUE -->
+    <section class="welcome-section">
+        <div>
+            <h2>Bienvenue dans votre espace 👋</h2>
+            <p>
+                Retrouvez ici une vue générale des activités
+                de recensement des forages.
+            </p>
+        </div>
+        <div class="welcome-icon">💧</div>
+    </section>
+    <!-- STATISTIQUES -->
+    <section class="section-dashboard">
+        <div class="section-heading">
+            <div>
+                <h2>Vue d'ensemble</h2>
+                <p>Situation générale de la plateforme</p>
+            </div>
+        </div>
+        <div class="stats-grid">
+            <article class="stat-card">
+                <div class="stat-icon icon-blue">💧</div>
+                <div class="stat-details">
+                    <span>Total des forages</span>
+                    <strong id="totalForages">0</strong>
+                </div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-icon icon-orange">📋</div>
+                <div class="stat-details">
+                    <span>Fiches soumises</span>
+                    <strong id="totalSoumis">0</strong>
+                </div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-icon icon-green">✓</div>
+                <div class="stat-details">
+                    <span>Fiches validées</span>
+                    <strong id="totalValides">0</strong>
+                </div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-icon icon-purple">👥</div>
+                <div class="stat-details">
+                    <span>Enquêteurs actifs</span>
+                    <strong id="totalActifs">0</strong>
+                </div>
+            </article>
+        </div>
+    </section>
+    <!-- ACTIVITES -->
+    <section class="dashboard-grid">
+        <div class="dashboard-panel">
+            <div class="panel-heading">
+                <div>
+                    <h3>Activité du recensement</h3>
+                    <p>Évolution des fiches collectées</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="graphiqueRecensements"></canvas>
+            </div>
+        </div>
+        <div class="dashboard-panel">
+            <div class="panel-heading">
+                <div>
+                    <h3>Accès rapide</h3>
+                    <p>Vos principaux modules</p>
+                </div>
+            </div>
+            <a href="gestion-forages.html" class="quick-link">
+                <span class="quick-icon">💧</span>
+                <div>
+                    <strong>Gestion des forages</strong>
+                    <small>Consulter et valider les fiches</small>
+                </div>
+                <span class="arrow">›</span>
+            </a>
+            <a href="gestion-enqueteurs.html" class="quick-link">
+                <span class="quick-icon">👥</span>
+                <div>
+                    <strong>Gestion des enquêteurs</strong>
+                    <small>Gérer les comptes utilisateurs</small>
+                </div>
+                <span class="arrow">›</span>
+            </a>
+        </div>
+    </section>
+    <!-- DERNIERES ACTIVITES -->
+    <section class="dashboard-panel recent-panel">
+        <div class="panel-heading">
+            <div>
+                <h3>Derniers recensements</h3>
+                <p>Les fiches récemment enregistrées</p>
+            </div>
+            <a href="gestion-forages.html" class="voir-tout">
+                Voir tout →
+            </a>
+        </div>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Enquêteur</th>
+                        <th>Préfecture</th>
+                        <th>Commune</th>
+                        <th>Date</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody id="activiteRecente">
+                    <tr>
+                        <td colspan="5">
+                            Chargement des activités...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <!-- PIED DE PAGE -->
+    <footer class="footer">
+        © 2026 SNAPE AQUA AFRICA — Tous droits réservés.
+    </footer>
+</main>
+</div>
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module" src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#087E78">
+
+    <title>Fiches recensées | SNAPE AQUA AFRICA</title>
+
+    <link rel="stylesheet" href="fiches.css">
+</head>
+
+<body>
+
+<header class="entete">
+    <div>
+        <h1>SNAPE AQUA AFRICA</h1>
+        <p>Gestion des fiches de recensement</p>
+    </div>
+
+    <a href="enqueteur.html"
+    id="retourDashboard">
+        ← Tableau de bord
+    </a>
+</header>
+
+<main class="conteneur">
+
+    <section class="titre-page">
+        <h2>Fiches des forages recensés</h2>
+        <p>Consultez les données collectées sur le terrain.</p>
+    </section>
+
+    <section class="statistiques">
+
+        <div class="carte-stat">
+            <span>Total des fiches</span>
+            <strong id="totalFiches">0</strong>
+        </div>
+
+        <div class="carte-stat">
+            <span>Soumises</span>
+            <strong id="fichesSoumises">0</strong>
+        </div>
+
+        <div class="carte-stat">
+            <span>Validées</span>
+            <strong id="fichesValidees">0</strong>
+        </div>
+
+        <div class="carte-stat">
+            <span>Rejetées</span>
+            <strong id="fichesRejetees">0</strong>
+        </div>
+
+    </section>
+
+    <section class="liste-fiches">
+
+        <h3>Liste des recensements</h3>
+
+        <div class="recherche">
+
+            <input
+                type="search"
+                id="rechercheFiche"
+                placeholder="Rechercher un village, district ou préfecture..."
+            >
+
+            <select id="filtreStatut">
+                <option value="">Tous les statuts</option>
+                <option value="soumis">Soumises</option>
+                <option value="valide">Validées</option>
+                <option value="rejete">Rejetées</option>
+                <option value="brouillon">Brouillons</option>
+            </select>
+
+        </div>
+
+        <p id="messageChargement">Chargement des fiches...</p>
+
+        <div class="table-responsive">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Enquêteur</th>
+                        <th>Préfecture</th>
+                        <th>Commune</th>
+                        <th>Village / Quartier</th>
+                        <th>Statut</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="listeForages">
+                </tbody>
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+<!-- FENÊTRE DE CONSULTATION -->
+<div id="fenetreFiche" class="fenetre-modal">
+
+    <div class="contenu-modal">
+
+        <div class="entete-modal">
+            <div>
+                <h2>Détails du forage</h2>
+                <p>Fiche de recensement SNAPE AQUA AFRICA</p>
+            </div>
+
+            <button id="fermerFiche" class="btnFermer">
+                &times;
+            </button>
+        </div>
+
+        <div id="detailsFiche">
+            Chargement des informations...
+        </div>
+
+    </div>
+
+</div>
+<!-- FENÊTRE DE CONSULTATION -->
+<div id="fenetreFiche" class="fenetre-modal">
+
+    <div class="contenu-modal">
+
+        <div class="entete-modal">
+            <div>
+                <h2>Détails du forage</h2>
+                <p>Fiche de recensement SNAPE AQUA AFRICA</p>
+            </div>
+
+            <button id="fermerFiche" class="btnFermer">
+                &times;
+            </button>
+        </div>
+
+        <div id="detailsFiche">
+            Chargement des informations...
+        </div>
+
+    </div>
+
+</div>
+<script type="module" src="fiches.js"></script>
+
+</body>
+</html>

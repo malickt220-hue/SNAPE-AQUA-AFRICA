@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#075B56">
+
+    <title>Gestion des forages | SNAPE AQUA AFRICA</title>
+
+    <link rel="stylesheet" href="gestion-forages.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- MENU LATERAL COMMUN -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-icon">💧</div>
+            <div>
+                <h2>SNAPE AQUA</h2>
+                <span>AFRICA</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">MENU PRINCIPAL</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="admin.html" class="nav-link">
+                <span>▦</span>
+                Tableau de bord
+            </a>
+
+            <a href="gestion-forages.html" class="nav-link active">
+                <span>💧</span>
+                Gestion des forages
+            </a>
+
+            <a href="gestion-enqueteurs.html" class="nav-link">
+                <span>👥</span>
+                Gestion des enquêteurs
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>📊</span>
+                Rapports et statistiques
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>⚙</span>
+                Paramètres
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <div class="profile-card">
+                <div class="profile-avatar" id="profilAvatar">A</div>
+
+                <div class="profile-info">
+                    <strong id="profilNom">Chargement...</strong>
+                    <span>Administrateur</span>
+                </div>
+            </div>
+
+            <button id="btnDeconnexion" class="btn-deconnexion" type="button">
+                <span>↪</span>
+                Déconnexion
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- VOILE MOBILE -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="main-content">
+
+        <!-- EN-TETE -->
+        <header class="topbar">
+
+            <button
+                id="btnMenu"
+                class="btn-menu"
+                type="button"
+                aria-label="Ouvrir le menu"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <div class="topbar-title">
+                <span class="page-indicator">ADMINISTRATION</span>
+                <h1>Gestion des forages</h1>
+            </div>
+
+        </header>
+
+        <div class="container">
+
+            <!-- PRESENTATION -->
+            <section class="welcome">
+                <h2>Gestion des forages</h2>
+                <p>Consultez et contrôlez les fiches de recensement.</p>
+            </section>
+
+            <!-- STATISTIQUES -->
+            <section class="stats">
+
+                <div class="stat-card">
+                    <h3>Total des fiches</h3>
+                    <p id="totalForages">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>En attente</h3>
+                    <p id="totalSoumis">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Validées</h3>
+                    <p id="totalValides">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Rejetées</h3>
+                    <p id="totalRejetes">0</p>
+                </div>
+
+            </section>
+
+            <!-- GESTION -->
+            <section class="gestion">
+
+                <!-- EXPORT PDF -->
+                <section class="export-section">
+
+                    <h2>📄 Rapport général des recensements</h2>
+
+                    <p>
+                        Exporter la liste complète des forages recensés
+                        selon une période donnée.
+                    </p>
+
+                    <div class="export-filtres">
+
+                        <div>
+                            <label for="dateDebut">Date de début</label>
+                            <input type="date" id="dateDebut">
+                        </div>
+
+                        <div>
+                            <label for="dateFin">Date de fin</label>
+                            <input type="date" id="dateFin">
+                        </div>
+
+                    </div>
+
+                    <button type="button" id="btnExporterPDF">
+                        Générer le rapport PDF
+                    </button>
+
+                    <p id="messageExport"></p>
+
+                </section>
+
+                <!-- LISTE DES FORAGES -->
+                <h2>Liste des forages recensés</h2>
+
+                <input
+                    type="search"
+                    id="rechercheForage"
+                    placeholder="Rechercher un forage...">
+
+                <select id="filtreStatut">
+                    <option value="">Tous les statuts</option>
+                    <option value="soumis">En attente</option>
+                    <option value="valide">Validés</option>
+                    <option value="rejete">Rejetés</option>
+                </select>
+
+                <p id="messageForages">Chargement des fiches...</p>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Enquêteur</th>
+                                <th>Préfecture</th>
+                                <th>Commune</th>
+                                <th>Village / Quartier</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="listeForages"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+            <!-- FENETRE DE CONSULTATION -->
+            <div id="fenetreConsultation" class="modal" hidden>
+
+                <div class="modal-contenu">
+
+                    <div class="modal-entete">
+                        <h2>Détails du forage</h2>
+
+                        <button id="fermerConsultation" type="button">
+                            &times;
+                        </button>
+                    </div>
+
+                    <div id="detailsForage">
+                        Chargement des informations...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            © 2026 SNAPE AQUA AFRICA — Tous droits réservés.
+        </footer>
+
+    </main>
+
+</div>
+
+<script type="module" src="gestion-forages.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,912 @@
+/* =========================================
+   VARIABLES ET REINITIALISATION
+========================================= */
+
+:root {
+    --principal: #087E78;
+    --principal-fonce: #06645F;
+    --fond: #F3F6F8;
+    --blanc: #FFFFFF;
+    --texte: #263238;
+    --secondaire: #64748b;
+    --bordure: #E8EEF0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================================
+   STRUCTURE GENERALE
+========================================= */
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--fond);
+    color: var(--texte);
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =========================================
+   MENU LATERAL
+========================================= */
+
+.sidebar {
+    width: 265px;
+    min-width: 265px;
+    height: 100vh;
+    background: #075B56;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+}
+
+/* LOGO */
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 25px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+}
+
+.sidebar-brand h2 {
+    font-size: 19px;
+    margin-bottom: 4px;
+}
+
+.sidebar-brand span {
+    font-size: 11px;
+    opacity: 0.75;
+    letter-spacing: 2px;
+}
+
+/* LABEL DU MENU */
+
+.sidebar-label {
+    padding: 25px 20px 12px;
+
+    font-size: 11px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 1px;
+}
+
+/* NAVIGATION */
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 12px;
+}
+
+.sidebar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 13px 15px;
+
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+
+    border-radius: 8px;
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+.sidebar-nav .nav-link span {
+    width: 22px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.sidebar-nav .nav-link:hover,
+.sidebar-nav .nav-link.active {
+    background: rgba(255,255,255,0.14);
+    color: white;
+}
+
+/* PIED DU MENU */
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 18px 15px;
+
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+/* PROFIL */
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.profile-avatar {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+
+    border-radius: 50%;
+    background: white;
+    color: var(--principal);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+.profile-info {
+    min-width: 0;
+}
+
+.profile-info strong {
+    display: block;
+    font-size: 13px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile-info span {
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+/* DECONNEXION */
+
+#btnDeconnexion {
+    width: 100%;
+    padding: 11px;
+
+    border: 1px solid rgba(255,255,255,0.25);
+    background: transparent;
+    color: white;
+
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+#btnDeconnexion:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+/* =========================================
+   CONTENU PRINCIPAL
+========================================= */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   BARRE SUPERIEURE
+========================================= */
+
+.topbar {
+    background: white;
+    min-height: 75px;
+
+    padding: 15px 30px;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    border-bottom: 1px solid var(--bordure);
+}
+
+.topbar-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.page-indicator {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    color: var(--principal);
+}
+
+.topbar h1 {
+    font-size: 21px;
+    color: var(--texte);
+}
+
+/* BOUTON MENU MOBILE */
+
+.btn-menu {
+    display: none;
+
+    border: none;
+    background: var(--principal);
+    color: white;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 8px;
+    font-size: 23px;
+
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* VOILE MOBILE */
+
+.sidebar-overlay {
+    display: none;
+}
+
+/* =========================================
+   CONTENEUR
+========================================= */
+
+.container {
+    width: 94%;
+    max-width: 1400px;
+    margin: 30px auto;
+}
+
+/* PRESENTATION */
+
+.welcome {
+    margin-bottom: 25px;
+}
+
+.welcome h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.welcome p {
+    color: var(--secondaire);
+    font-size: 14px;
+}
+
+/* =========================================
+   STATISTIQUES
+========================================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    position: relative;
+    overflow: hidden;
+
+    background: white;
+    padding: 25px;
+
+    border: none;
+    border-radius: 16px;
+
+    box-shadow: 0 5px 20px rgba(15,40,50,0.06);
+
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(15,40,50,0.10);
+}
+
+.stat-card h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #718096;
+    margin-bottom: 15px;
+}
+
+.stat-card p {
+    font-size: 32px;
+    font-weight: 700;
+    color: #243746;
+}
+
+.stat-card::after {
+    content: "";
+    position: absolute;
+
+    right: -20px;
+    top: -25px;
+
+    width: 95px;
+    height: 95px;
+
+    border-radius: 50%;
+    background: rgba(8,126,120,0.07);
+}
+
+.stat-card:nth-child(2)::after {
+    background: rgba(37,99,235,0.08);
+}
+
+.stat-card:nth-child(3)::after {
+    background: rgba(22,163,74,0.08);
+}
+
+.stat-card:nth-child(4)::after {
+    background: rgba(220,38,38,0.08);
+}
+
+/* =========================================
+   SECTION GESTION
+========================================= */
+
+.gestion {
+    background: white;
+    padding: 25px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+.gestion h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+/* RECHERCHE ET FILTRE */
+
+#rechercheForage,
+#filtreStatut {
+    padding: 12px;
+
+    border: 1px solid #dce3e8;
+    border-radius: 7px;
+
+    margin-bottom: 18px;
+    font-size: 14px;
+    background: white;
+}
+
+#rechercheForage {
+    width: 65%;
+}
+
+#filtreStatut {
+    width: 30%;
+}
+
+/* =========================================
+   TABLEAU DES FORAGES
+========================================= */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
+}
+
+th {
+    background: #edf5f4;
+    color: var(--principal);
+
+    text-align: left;
+    padding: 14px;
+
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+td {
+    padding: 14px;
+
+    border-bottom: 1px solid #edf0f2;
+
+    font-size: 13px;
+}
+
+tbody tr:hover {
+    background: #f8fbfb;
+}
+
+/* =========================================
+   BADGES DES STATUTS
+========================================= */
+
+.badge-statut {
+    display: inline-block;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.statut-soumis {
+    background: #fff4d6;
+    color: #a16207;
+}
+
+.statut-valide {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.statut-rejete {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* =========================================
+   BOUTONS D'ACTION
+========================================= */
+
+.btn-consulter,
+.btn-valider,
+.btn-rejeter {
+    border: none;
+
+    padding: 9px 12px;
+    margin: 3px;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-consulter {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.btn-valider {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.btn-rejeter {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.btn-consulter:hover,
+.btn-valider:hover,
+.btn-rejeter:hover {
+    filter: brightness(0.95);
+}
+
+.btn-consulter:disabled,
+.btn-valider:disabled,
+.btn-rejeter:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   EXPORT PDF
+========================================= */
+
+.export-section {
+    background: white;
+
+    padding: 25px;
+    margin-bottom: 25px;
+
+    border-radius: 14px;
+    border-left: 5px solid var(--principal);
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+.export-section h2 {
+    color: var(--principal);
+    margin-bottom: 10px;
+}
+
+.export-section p {
+    color: var(--secondaire);
+    margin-bottom: 18px;
+    line-height: 1.5;
+}
+
+.export-filtres {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.export-filtres div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    flex: 1;
+    min-width: 200px;
+}
+
+.export-filtres label {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.export-filtres input {
+    padding: 12px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+
+    font-family: inherit;
+}
+
+#btnExporterPDF {
+    background: var(--principal);
+    color: white;
+
+    border: none;
+    padding: 13px 22px;
+
+    border-radius: 8px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#btnExporterPDF:hover {
+    background: var(--principal-fonce);
+}
+
+#messageExport {
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+/* =========================================
+   FENETRE DE CONSULTATION
+========================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.65);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 15px;
+    z-index: 1000;
+}
+
+.modal[hidden] {
+    display: none !important;
+}
+
+.modal-contenu {
+    background: white;
+
+    width: 100%;
+    max-width: 950px;
+
+    max-height: 90vh;
+    overflow-y: auto;
+
+    border-radius: 14px;
+    padding: 25px;
+}
+
+.modal-entete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+#fermerConsultation {
+    border: none;
+    background: #e74c3c;
+    color: white;
+
+    font-size: 25px;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.detail-section {
+    margin-bottom: 25px;
+}
+
+.detail-section h3 {
+    background: var(--principal);
+    color: white;
+
+    padding: 12px;
+    border-radius: 7px;
+
+    margin-bottom: 12px;
+}
+
+.detail-grille {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.detail-item {
+    background: #f3f7f7;
+    padding: 12px;
+    border-radius: 7px;
+}
+
+.detail-item strong {
+    display: block;
+    color: var(--principal);
+    margin-bottom: 6px;
+}
+
+.detail-item span {
+    color: #333;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+    margin-top: auto;
+    padding: 20px;
+
+    text-align: center;
+
+    color: var(--secondaire);
+    font-size: 12px;
+}
+
+/* =========================================
+   TABLETTE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    /* MENU LATERAL */
+
+    .sidebar {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+        bottom: 0;
+
+        width: 280px;
+        min-width: 0;
+        max-width: 85vw;
+
+        height: 100vh;
+        height: 100dvh;
+
+        background: #064E49;
+
+        z-index: 1002;
+
+        overflow-y: auto;
+
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    /* VOILE */
+
+    .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+
+        background: rgba(0,0,0,0.55);
+
+        z-index: 1001;
+
+        display: none;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+    /* BOUTON MENU */
+
+    .btn-menu {
+        display: block;
+        flex-shrink: 0;
+    }
+
+    /* BARRE SUPERIEURE */
+
+    .topbar {
+        padding: 14px 18px;
+        min-height: 70px;
+    }
+
+    .topbar h1 {
+        font-size: 18px;
+    }
+
+    /* CONTENU */
+
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .container {
+        width: 94%;
+        margin: 22px auto;
+    }
+
+    /* STATISTIQUES */
+
+    .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 17px;
+    }
+
+    .stat-card p {
+        font-size: 25px;
+    }
+
+    /* GESTION */
+
+    .gestion {
+        padding: 15px;
+    }
+
+    #rechercheForage,
+    #filtreStatut {
+        width: 100%;
+    }
+
+    /* EXPORT */
+
+    .export-section {
+        padding: 18px;
+    }
+
+    .export-filtres {
+        flex-direction: column;
+    }
+
+    .export-filtres div {
+        min-width: 100%;
+    }
+
+    /* MODALE */
+
+    .modal-contenu {
+        padding: 18px;
+        max-height: 88vh;
+    }
+
+    .detail-grille {
+        grid-template-columns: 1fr;
+    }
+
+    /* BLOQUER LE DEFILEMENT DERRIERE LE MENU */
+
+    body.menu-open {
+        overflow: hidden;
+    }
+
+}
+
+/* =========================================
+   PETITS TELEPHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+    }
+
+    .stat-card {
+        padding: 13px;
+    }
+
+    .stat-card h3 {
+        font-size: 11px;
+    }
+
+    .stat-card p {
+        font-size: 22px;
+    }
+
+    .topbar {
+        padding: 12px;
+    }
+
+    .topbar h1 {
+        font-size: 16px;
+    }
+
+}

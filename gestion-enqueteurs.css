@@ -1,0 +1,733 @@
+/* =========================================
+   VARIABLES
+========================================= */
+
+:root {
+    --principal: #087E78;
+    --principal-fonce: #06645F;
+    --fond: #F3F6F8;
+    --blanc: #FFFFFF;
+    --texte: #263238;
+    --secondaire: #64748b;
+    --bordure: #E8EEF0;
+    --vert: #16845B;
+    --orange: #D58A16;
+    --rouge: #D64545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================================
+   STRUCTURE GENERALE
+========================================= */
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--fond);
+    color: var(--texte);
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =========================================
+   MENU LATERAL
+========================================= */
+
+.sidebar {
+    width: 265px;
+    min-width: 265px;
+    height: 100vh;
+
+    background: #075B56;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+}
+
+/* LOGO */
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 25px 20px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+}
+
+.sidebar-brand h2 {
+    font-size: 19px;
+    margin-bottom: 4px;
+}
+
+.sidebar-brand span {
+    font-size: 11px;
+    opacity: 0.75;
+    letter-spacing: 2px;
+}
+
+/* NAVIGATION */
+
+.sidebar-label {
+    padding: 25px 20px 12px;
+
+    font-size: 11px;
+    text-transform: uppercase;
+
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 1px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 0 12px;
+}
+
+.sidebar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 13px 15px;
+
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+
+    border-radius: 8px;
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+.sidebar-nav .nav-link span {
+    width: 22px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.sidebar-nav .nav-link:hover,
+.sidebar-nav .nav-link.active {
+    background: rgba(255,255,255,0.14);
+    color: white;
+}
+
+/* PIED DU MENU */
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 18px 15px;
+
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+/* PROFIL */
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 15px;
+}
+
+.profile-avatar {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+
+    border-radius: 50%;
+    background: white;
+    color: var(--principal);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+.profile-info {
+    min-width: 0;
+}
+
+.profile-info strong {
+    display: block;
+    font-size: 13px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile-info span {
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+/* DECONNEXION */
+
+.btn-deconnexion {
+    width: 100%;
+    padding: 11px;
+
+    border: 1px solid rgba(255,255,255,0.25);
+    background: transparent;
+    color: white;
+
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+.btn-deconnexion:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+/* =========================================
+   CONTENU PRINCIPAL
+========================================= */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* BARRE SUPERIEURE */
+
+.topbar {
+    background: white;
+    min-height: 75px;
+
+    padding: 15px 30px;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    border-bottom: 1px solid var(--bordure);
+}
+
+.topbar-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.page-indicator {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    color: var(--principal);
+}
+
+.topbar h1 {
+    font-size: 21px;
+    color: var(--texte);
+}
+
+/* BOUTON MENU */
+
+.btn-menu {
+    display: none;
+
+    border: none;
+    background: var(--principal);
+    color: white;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 8px;
+    font-size: 23px;
+
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* VOILE MOBILE */
+
+.sidebar-overlay {
+    display: none;
+}
+
+/* =========================================
+   CONTENEUR
+========================================= */
+
+.conteneur {
+    width: 94%;
+    max-width: 1400px;
+
+    margin: 30px auto;
+}
+
+/* TITRE */
+
+.titre-section {
+    margin-bottom: 25px;
+}
+
+.titre-section h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.titre-section p {
+    color: var(--secondaire);
+    font-size: 14px;
+}
+
+/* =========================================
+   STATISTIQUES
+========================================= */
+
+.statistiques {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.carte-stat {
+    position: relative;
+    overflow: hidden;
+
+    background: white;
+    padding: 25px;
+
+    border: none;
+    border-radius: 16px;
+
+    box-shadow: 0 5px 20px rgba(15,40,50,0.06);
+
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.carte-stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(15,40,50,0.10);
+}
+
+.carte-stat::after {
+    content: "";
+
+    position: absolute;
+    right: -20px;
+    top: -25px;
+
+    width: 95px;
+    height: 95px;
+
+    border-radius: 50%;
+    background: rgba(8,126,120,0.07);
+}
+
+.carte-stat span {
+    display: block;
+
+    color: #718096;
+    font-size: 13px;
+    font-weight: 600;
+
+    margin-bottom: 15px;
+}
+
+.carte-stat strong {
+    font-size: 32px;
+    color: #243746;
+}
+
+.carte-stat.attente::after {
+    background: rgba(213,138,22,0.10);
+}
+
+.carte-stat.attente strong {
+    color: var(--orange);
+}
+
+.carte-stat.actifs::after {
+    background: rgba(22,132,91,0.10);
+}
+
+.carte-stat.actifs strong {
+    color: var(--vert);
+}
+
+/* =========================================
+   LISTE DES ENQUETEURS
+========================================= */
+
+.section-liste {
+    background: white;
+
+    border-radius: 12px;
+    padding: 25px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+.barre-outils {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.barre-outils h3 {
+    font-size: 19px;
+    margin-bottom: 6px;
+}
+
+.barre-outils p {
+    color: var(--secondaire);
+    font-size: 13px;
+}
+
+/* RECHERCHE */
+
+#rechercheEnqueteur {
+    width: 280px;
+    max-width: 100%;
+
+    padding: 12px 15px;
+
+    border: 1px solid var(--bordure);
+    border-radius: 8px;
+
+    outline: none;
+    font-size: 14px;
+}
+
+#rechercheEnqueteur:focus {
+    border-color: var(--principal);
+}
+
+/* =========================================
+   TABLEAU
+========================================= */
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+thead {
+    background: #edf5f4;
+}
+
+th {
+    text-align: left;
+
+    padding: 15px;
+
+    font-size: 13px;
+    color: var(--principal);
+
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+td {
+    padding: 16px 15px;
+
+    border-bottom: 1px solid var(--bordure);
+
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background: #FAFCFC;
+}
+
+/* =========================================
+   STATUTS
+========================================= */
+
+.statut-badge {
+    display: inline-block;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+.statut-en_attente {
+    background: #fff4d6;
+    color: #a16207;
+}
+
+.statut-actif {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.statut-suspendu,
+.statut-refuse {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* =========================================
+   BOUTONS D'ACTION
+========================================= */
+
+.action-btn {
+    border: none;
+
+    padding: 9px 12px;
+    margin: 3px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.valider {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.refuser {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.suspendre {
+    background: #fff4d6;
+    color: #a16207;
+}
+
+.action-btn:hover {
+    filter: brightness(0.95);
+}
+
+/* =========================================
+   MESSAGES
+========================================= */
+
+.message {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.message:empty {
+    display: none;
+}
+
+.message.error {
+    color: var(--rouge);
+}
+
+.message.success {
+    color: var(--vert);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+    margin-top: auto;
+    padding: 20px;
+
+    text-align: center;
+
+    color: var(--secondaire);
+    font-size: 12px;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+        bottom: 0;
+
+        width: 280px;
+        min-width: 0;
+        max-width: 85vw;
+
+        height: 100vh;
+        height: 100dvh;
+
+        background: #064E49;
+
+        z-index: 1002;
+        overflow-y: auto;
+
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+
+        background: rgba(0,0,0,0.55);
+
+        z-index: 1001;
+        display: none;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+    .btn-menu {
+        display: block;
+    }
+
+    .topbar {
+        padding: 14px 18px;
+        min-height: 70px;
+    }
+
+    .topbar h1 {
+        font-size: 18px;
+    }
+
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .conteneur {
+        width: 94%;
+        margin: 22px auto;
+    }
+
+    .titre-section h2 {
+        font-size: 22px;
+    }
+
+    .statistiques {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .carte-stat {
+        padding: 17px;
+    }
+
+    .carte-stat strong {
+        font-size: 25px;
+    }
+
+    .section-liste {
+        padding: 17px;
+    }
+
+    .barre-outils {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    #rechercheEnqueteur {
+        width: 100%;
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+
+}
+
+/* PETITS TELEPHONES */
+
+@media (max-width: 380px) {
+
+    .statistiques {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+    }
+
+    .carte-stat {
+        padding: 13px;
+    }
+
+    .carte-stat span {
+        font-size: 11px;
+    }
+
+    .carte-stat strong {
+        font-size: 22px;
+    }
+
+    .topbar {
+        padding: 12px;
+    }
+
+    .topbar h1 {
+        font-size: 16px;
+    }
+
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#087E78">
+
+    <title>Inscription | SNAPE AQUA AFRICA</title>
+
+    <link rel="stylesheet" href="inscription.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <div class="logo">
+            SNAPE <span>AQUA AFRICA</span>
+        </div>
+
+        <section class="card">
+
+            <h1>Créer un compte</h1>
+
+            <p class="subtitle">
+                Inscription des enquêteurs
+            </p>
+
+            <form id="inscriptionForm">
+
+                <div class="form-group">
+                    <label for="nom_complet">Nom complet</label>
+                    <input
+                        type="text"
+                        id="nom_complet"
+                        placeholder="Votre nom complet"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="telephone">Téléphone</label>
+                    <input
+                        type="tel"
+                        id="telephone"
+                        placeholder="Votre numéro de téléphone"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Adresse e-mail</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Votre adresse e-mail"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Minimum 8 caractères"
+                        minlength="8"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">
+                        Confirmer le mot de passe
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirmez votre mot de passe"
+                        required
+                    >
+                </div>
+
+                <div id="message"></div>
+
+                <button type="submit" id="btnInscription">
+                    Créer mon compte
+                </button>
+
+            </form>
+
+            <p class="login-link">
+                Vous avez déjà un compte ?
+                <a href="connexion.html">Se connecter</a>
+            </p>
+
+        </section>
+
+        <footer>
+            SNAPE AQUA AFRICA © 2026
+        </footer>
+
+    </main>
+
+    <script type="module" src="inscription.js"></script>
+
+</body>
+</html>

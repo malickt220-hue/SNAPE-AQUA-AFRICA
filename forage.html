@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#087E78">
+
+    <title>Recensement des forages | SNAPE AQUA AFRICA</title>
+
+    <link rel="stylesheet" href="forage.css">
+</head>
+
+
+<body>
+
+<header class="header">
+    <div class="logo">SNAPE AQUA AFRICA</div>
+  </p>Recensement des forages</p>
+    </div>
+    <a href="enqueteur.html" class="retour-dashboard">
+    Retour au tableau de bord
+</a>
+</header>
+
+<main class="container">
+
+    <div class="form-heading">
+        <h1>Nouvelle fiche de forage</h1>
+        <p>Fiche officielle de collecte des données hydrauliques</p>
+    </div>
+
+    <div class="progress-container">
+        <div id="progression"></div>
+    </div>
+
+    <div class="step-info">
+        Étape <span id="numeroEtape">1</span> sur 8
+    </div>
+
+    <form id="formulaireForage">
+
+        <!-- ETAPE 1 -->
+        <section class="form-step active">
+
+            <h2>1. Identification</h2>
+
+            <label>Nom de l'enquêteur</label>
+            <input type="text" id="nomEnqueteur"
+                   readonly placeholder="Chargement...">
+
+            <label>Date de collecte</label>
+            <input type="date" id="dateCollecte" readonly>
+
+            <label>Nom du programme / projet</label>
+            <input type="text" id="nomProgramme">
+
+        </section>
+
+        <!-- ETAPE 2 -->
+        <section class="form-step">
+
+            <h2>2. Localisation</h2>
+
+            <label>Préfecture</label>
+            <input type="text" id="prefecture" required>
+
+            <label>Commune</label>
+            <input type="text" id="commune" required>
+
+            <label>District</label>
+            <input type="text" id="district">
+
+            <label>Village / Quartier</label>
+            <input type="text" id="villageQuartier" required>
+
+            <label>Latitude</label>
+            <input type="number" id="latitude" step="any" readonly>
+
+            <label>Longitude</label>
+            <input type="number" id="longitude" step="any" readonly>
+
+            <button type="button" id="btnGPS">
+                Obtenir ma position GPS
+            </button>
+
+        </section>
+
+        <!-- ETAPE 3 -->
+        <section class="form-step">
+
+            <h2>3. Identification de l'ouvrage</h2>
+
+            <label>Programme ayant réalisé l'ouvrage</label>
+            <input type="text" id="programmeRealisation">
+
+            <label>Année de réalisation</label>
+            <input type="number" id="anneeRealisation">
+
+            <label>Programme ayant réhabilité l'ouvrage</label>
+            <input type="text" id="programmeRehabilitation">
+
+            <label>Année de réhabilitation</label>
+            <input type="number" id="anneeRehabilitation">
+
+            <label>État de l'ouvrage</label>
+            <input type="text" id="etatOuvrage">
+
+            <label>Le forage est-il utilisé ?</label>
+            <select id="utilise">
+                <option value="">Choisir</option>
+                <option value="true">Oui</option>
+                <option value="false">Non</option>
+            </select>
+
+            <label>Si non, pourquoi ?</label>
+            <textarea id="raisonNonUtilisation"></textarea>
+
+        </section>
+
+        <!-- ETAPE 4 -->
+        <section class="form-step">
+
+            <h2>4. Caractéristiques techniques</h2>
+
+            <label>Profondeur (m)</label>
+            <input type="number" id="profondeur" step="any">
+
+            <label>Débit (m³/h)</label>
+            <input type="number" id="debit" step="any">
+
+            <label>Nombre de ménages</label>
+            <input type="number" id="nombreMenages">
+
+            <label>Autres villages desservis</label>
+            <textarea id="autresVillages"></textarea>
+
+            <label>Marque de la pompe manuelle</label>
+            <input type="text" id="marquePompe">
+
+            <label>Modèle</label>
+            <input type="text" id="modelePompe">
+
+            <label>Année</label>
+            <input type="number" id="anneePompe">
+
+            <label>Si non fonctionnelle, décrire le problème</label>
+            <textarea id="problemePompe"></textarea>
+
+        </section>
+
+        <!-- ETAPE 5 -->
+        <section class="form-step">
+
+            <h2>5. État des équipements</h2>
+
+            <label>Existence d'un déferriseur</label>
+            <select id="existenceDeferriseur">
+                <option value="">Choisir</option>
+                <option value="true">Oui</option>
+                <option value="false">Non</option>
+            </select>
+
+            <label>État du déferriseur</label>
+            <input type="text" id="etatDeferriseur">
+
+            <label>État de la superstructure</label>
+            <input type="text" id="etatSuperstructure">
+
+            <label>État de la margelle et anti-bourbier</label>
+            <input type="text" id="etatMargelle">
+
+            <label>Présence d'une clôture</label>
+            <select id="presenceCloture">
+                <option value="">Choisir</option>
+                <option value="true">Oui</option>
+                <option value="false">Non</option>
+            </select>
+
+            <label>État de l'évacuation et du puits perdu</label>
+            <input type="text" id="etatEvacuation">
+
+            <label>État de la clôture</label>
+            <input type="text" id="etatCloture">
+
+        </section>
+
+        <!-- ETAPE 6 -->
+        <section class="form-step">
+
+            <h2>6. Qualité de l'eau et pollution</h2>
+
+            <label>Couleur de l'eau</label>
+            <input type="text" id="couleurEau">
+
+            <label>Présence d'un goût anormal</label>
+            <select id="goutEau">
+                <option value="">Choisir</option>
+                <option value="true">Oui</option>
+                <option value="false">Non</option>
+            </select>
+
+            <label>Présence d'une odeur anormale</label>
+            <select id="odeurEau">
+                <option value="">Choisir</option>
+                <option value="true">Oui</option>
+                <option value="false">Non</option>
+            </select>
+
+            <label>Source potentielle de pollution ?</label>
+            <select id="sourcePollution">
+                <option value="">Choisir</option>
+                <option value="true">Oui</option>
+                <option value="false">Non</option>
+            </select>
+
+            <label>Type de pollution</label>
+            <textarea id="typePollution"></textarea>
+
+            <label>Distance de la source de pollution (m)</label>
+            <input type="number" id="distancePollution" step="any">
+
+        </section>
+
+        <!-- ETAPE 7 -->
+        <section class="form-step">
+
+            <h2>7. Gestion et entretien</h2>
+
+            <label>Type de gestionnaire</label>
+            <input type="text" id="typeGestionnaire">
+
+            <label>Gestion fonctionnelle ?</label>
+            <select id="gestionFonctionnelle">
+                <option value="">Choisir</option>
+                <option value="true">Oui</option>
+                <option value="false">Non</option>
+            </select>
+
+            <label>Paiement demandé ?</label>
+            <select id="paiement">
+                <option value="">Choisir</option>
+                <option value="true">Oui</option>
+                <option value="false">Non</option>
+            </select>
+
+            <label>Nom du gestionnaire</label>
+            <input type="text" id="nomGestionnaire">
+
+            <label>Cotisations régulières ?</label>
+            <select id="cotisationsRegulieres">
+                <option value="">Choisir</option>
+                <option value="true">Oui</option>
+                <option value="false">Non</option>
+            </select>
+
+            <label>Période de cotisation</label>
+            <input type="text" id="periodeCotisation">
+
+            <label>Nombre de personnes dans la structure</label>
+            <input type="number" id="nombrePersonnesGestion">
+
+            <label>Base de gestion</label>
+            <input type="text" id="baseGestion">
+
+            <label>Réparateur</label>
+            <input type="text" id="reparateur">
+
+            <label>Montant de réparation (GNF)</label>
+            <input type="number" id="montantReparation">
+
+            <label>Montant en caisse (GNF)</label>
+            <input type="number" id="montantCaisse">
+
+            <label>Vente au volume ?</label>
+            <select id="venteVolume">
+                <option value="">Choisir</option>
+                <option value="true">Oui</option>
+                <option value="false">Non</option>
+            </select>
+
+            <label>Base de vente</label>
+            <input type="text" id="baseVente">
+
+            <label>Volume vendu (litres)</label>
+            <input type="number" id="volumeLitres">
+
+            <label>Appui extérieur en cas de panne</label>
+            <input type="text" id="appuiExterieurPanne">
+
+            <label>Prix de l'appui (GNF)</label>
+            <input type="number" id="prixAppui">
+
+        </section>
+
+        <!-- ETAPE 8 -->
+        <section class="form-step">
+
+            <h2>8. Satisfaction et observations</h2>
+
+            <label>Les usagers sont-ils satisfaits ?</label>
+            <select id="satisfait">
+                <option value="">Choisir</option>
+                <option value="true">Oui</option>
+                <option value="false">Non</option>
+            </select>
+
+            <label>Cause de l'insatisfaction</label>
+            <textarea id="causeInsatisfaction"></textarea>
+
+            <label>Observations générales</label>
+            <textarea id="observations"></textarea>
+
+            <label>Signature</label>
+            <input type="text" id="signature">
+
+        </section>
+
+        <div class="navigation">
+            <button type="button" id="precedent">Précédent</button>
+            <button type="button" id="suivant">Suivant</button>
+            <button type="submit" id="soumettre" hidden>
+                Soumettre la fiche
+            </button>
+        </div>
+
+    </form>
+
+    <p id="message"></p>
+<!-- FENETRE DE CONSULTATION -->
+<div id="fenetreConsultation" class="modal" hidden>
+
+    <div class="modal-contenu">
+
+        <div class="modal-entete">
+            <h2>Détails du forage</h2>
+
+            <button id="fermerConsultation" type="button">
+                &times;
+            </button>
+        </div>
+
+        <div id="detailsForage">
+            Chargement des informations...
+        </div>
+
+    </div>
+
+</div>
+</main>
+
+<script type="module" src="forage.js"></script>
+
+</body>
+</html>
